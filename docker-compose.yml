@@ -10,6 +10,8 @@ services:
       POSTGRES_PASSWORD: Qwerty1234
     ports:
       - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   
   eventtoday:
     image: fastapiapp
@@ -22,6 +24,6 @@ services:
       - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5433/Eventtoday_DB
     ports:
       - "9000:8000" 
-
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 4
 
 
