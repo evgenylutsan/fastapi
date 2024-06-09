@@ -1,24 +1,25 @@
 version: '3.8'
 
 services:
+  
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5432/Eventtoday_DB
+    depends_on:
+      - db
+     
+
   db:
-    image: postgres:15
-    container_name: eventtoday_db
+    image: postgres:12
     environment:
       POSTGRES_DB: Eventtoday_DB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Qwerty1234
-    ports:
-      - "5432:5432"
-  
-  eventtoday:
-    build: .
-    container_name: fastapiapp
-    depends_on:
-      - db
-    environment:
-      - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5432/Eventtoday_DB
-    ports:
-      - "8000:8000" 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
-
+volumes:
+  postgres_data:
