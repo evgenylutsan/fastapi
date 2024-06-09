@@ -19,7 +19,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5432/Eventtoday_DB
+      - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5433/Eventtoday_DB
     ports:
       - "9000:8000" 
 
