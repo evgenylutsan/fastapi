@@ -4,14 +4,20 @@ services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - 8000:8000
     environment:
-      - DATABASE_URL=postgresql://postgres:Qwerty1234@db:5432/Eventtoday_DB
+      - DATABASE_HOSTNAME=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
     depends_on:
       - db
      
   db:
     image: postgres:12
+    container_name: db
+    hostname: db
     environment:
       POSTGRES_DB: Eventtoday_DB
       POSTGRES_USER: postgres
