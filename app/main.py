@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 from app.router import event, user, speaker, sponsor, calendar
 from app.db import models
 from app.db.database import engine
@@ -14,5 +15,6 @@ app.include_router(calendar.router)
 
 models.Base.metadata.create_all(engine)
 
-
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
