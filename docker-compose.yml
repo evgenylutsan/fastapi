@@ -10,8 +10,6 @@ services:
       POSTGRES_PASSWORD: Qwerty1234
     ports:
       - "5433:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
   
   eventtoday:
     image: fastapiapp
