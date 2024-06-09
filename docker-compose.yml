@@ -12,16 +12,13 @@ services:
       - "5432:5432"
   
   eventtoday:
-    image: fastapiapp
-    build:
-      context: .
+    build: .
     container_name: fastapiapp
     depends_on:
       - db
     environment:
       - DATABASE_URL=postgresql:///postgres:Qwerty1234@localhost:5432/Eventtoday_DB
     ports:
-      - "9000:8000" 
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+      - "8000:8000" 
 
 
