@@ -4,7 +4,7 @@ services:
   web:
     build: .
     ports:
-      - 8000:8000
+      - "8000:8000"
     environment:
       - DATABASE_HOSTNAME=${DATABASE_HOST}
       - DATABASE_PORT=${DATABASE_PORT}
@@ -13,7 +13,7 @@ services:
       - DATABASE_USERNAME=${DATABASE_USERNAME}
     depends_on:
       - db
-     
+
   db:
     image: postgres:12
     container_name: db
@@ -22,6 +22,8 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
