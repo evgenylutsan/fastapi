@@ -11,8 +11,6 @@ from starlette.requests import Request
 from starlette.responses import Response
 import base64
 
-
-
 app = FastAPI()
 
 security = HTTPBasic()
