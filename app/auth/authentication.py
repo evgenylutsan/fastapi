@@ -18,10 +18,10 @@ router = APIRouter(
         summary= 'Авторизация пользователя'
         )
 async def get_token(response: Response, request: UserAuth,db: Session = Depends(get_db)):
-    user = db.query(models.DbUser).filter(models.DbUser.email == request.email).first()
+    user = db.query(models.DbUser).filter(models.DbUser.email == request.email_login).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Неверно введена почта")
-    if not Hash.verify(user.password, request.password):
+    if not Hash.verify(user.password, request.password_login):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Неверно введен пароль")
     
     access_token = oauth2.create_access_token(data={'sub': user.id})
