@@ -11,22 +11,6 @@ router = APIRouter(
     tags=['user']
 )
 
-# # Регистрация пользователя
-# @router.post(
-#     '/registration', 
-#     response_model=UserDisplay,
-#     summary= 'Регистрация пользователя'
-#     )
-# def create_user(request: User, db: Session = Depends(get_db)):
-#     existing_user = db_user.existing_user(db, request.email)
-#     if existing_user:
-#         raise HTTPException(
-#             status_code=status.HTTP_400_BAD_REQUEST,
-#             detail='Данная почта уже используется'
-#         )
-#     return db_user.create_user(db, request)
-
-
 # Прочитать всех пользователей
 @router.get(
     '/', 
