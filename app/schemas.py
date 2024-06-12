@@ -21,8 +21,8 @@ class User(BaseModel):
    
 # Авторизация пользователя
 class UserAuth(BaseModel):
-    email: EmailStr
-    password: str
+    email_login: EmailStr
+    password_login: str
     
 # Вывод информации о пользователе
 class UserDisplay(BaseModel):
