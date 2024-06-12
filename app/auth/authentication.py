@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Response
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
+from jose import JWTError, jwt
 from sqlalchemy.orm.session import Session
 from app.db.database import get_db
 from app.db import models, db_user
@@ -47,5 +48,20 @@ def create_user(request: User, db: Session = Depends(get_db)):
         )
     return db_user.create_user(db, request)
     
+@router.get('/session')
+async def get_session(token: str = Depends(oauth2.oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, oauth2.SECRET_KEY, algorithms=[oauth2.ALGORITHM])
+        name: str = payload.get('sub')
+        if name is None:
+          raise credentials_exception
+    except JWTError:
+      raise credentials_exception
+    return {'user': name}
 
     
