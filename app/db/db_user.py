@@ -9,8 +9,6 @@ def create_user(db: Session, request: UserBase):
     new_user = DbUser(
         name = request.name,
         surname = request.surname,
-        secondname = request.secondname,
-        birth_date = request.birth_date,
         email = request.email,
         phone_number = request.phone_number,
         password = Hash.bcrypt(request.password)
@@ -41,8 +39,6 @@ def update_user(db: Session, id: int, request: UserBase):
     user.update({
         DbUser.name: request.name,
         DbUser.surname: request.surname,
-        DbUser.secondname: request.secondname,
-        DbUser.birth_date: request.birth_date,
         DbUser.email: request.email,
         DbUser.phone_number: request.phone_number,
         DbUser.password: Hash.bcrypt(request.password)

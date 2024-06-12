@@ -7,8 +7,6 @@ class UserBase(BaseModel):
     id:int
     name: str
     surname: str
-    secondname: str
-    birth_date: date
     email: EmailStr
     phone_number: str
     password: str
