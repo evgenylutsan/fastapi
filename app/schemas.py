@@ -15,8 +15,6 @@ class UserBase(BaseModel):
 class User(BaseModel):
     name: str
     surname: str
-    secondname: str
-    birth_date: date
     email: EmailStr
     phone_number: str
     password: str
@@ -30,7 +28,6 @@ class UserAuth(BaseModel):
 class UserDisplay(BaseModel):
     name:str
     surname: str
-    secondname: str
     email: EmailStr
     class Config():
         from_attributes = True

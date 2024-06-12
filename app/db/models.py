@@ -8,8 +8,6 @@ class DbUser(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     surname = Column(String)
-    secondname = Column(String)
-    birth_date = Column(Date)
     email = Column(VARCHAR)
     phone_number = Column(VARCHAR)
     password = Column(VARCHAR)
