@@ -14,7 +14,7 @@ router = APIRouter(
 
 # Авторизация пользователя
 @router.post(
-        'api/login',
+        '/api/login',
         summary= 'Авторизация пользователя'
         )
 async def get_token(response: Response, request: UserAuth,db: Session = Depends(get_db)):
@@ -35,7 +35,7 @@ async def get_token(response: Response, request: UserAuth,db: Session = Depends(
     
 # Регистрация пользователя
 @router.post(
-    'api/registration', 
+    '/api/registration', 
     response_model=UserDisplay,
     summary= 'Регистрация пользователя'
     )
@@ -48,7 +48,7 @@ def create_user(request: User, db: Session = Depends(get_db)):
         )
     return db_user.create_user(db, request)
     
-@router.get('api/session')
+@router.get('/api/session')
 async def get_session(token: str = Depends(oauth2.oauth2_scheme)):
     credentials_exception = HTTPException(
         status_code=401,

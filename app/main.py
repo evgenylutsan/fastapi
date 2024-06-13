@@ -84,6 +84,6 @@ models.Base.metadata.create_all(engine)
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
-@app.get("api/swagger-redirect", include_in_schema=False)
+@app.get("/api/swagger-redirect", include_in_schema=False)
 async def swagger_redirect():
     return get_swagger_ui_oauth2_redirect_html()

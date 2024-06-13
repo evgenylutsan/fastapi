@@ -6,7 +6,7 @@ from app.db.database import get_db
 from app.db import db_speaker
 
 router = APIRouter(
-    prefix='api/speaker',
+    prefix='/api/speaker',
     tags=['speaker']
 )
 
