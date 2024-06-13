@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session, relationship, joinedload
 from app.auth.oauth2 import get_current_user, oauth2_scheme
 
 router = APIRouter(
-    prefix='/event',
+    prefix='api/event',
     tags=['event']
 )
 

@@ -6,7 +6,7 @@ from app.schemas import SponsorBase, Sponsor
 from app.db import db_sponsor
 
 router = APIRouter(
-    prefix='/sponsor',
+    prefix='api/sponsor',
     tags=['sponsor']
 )
 

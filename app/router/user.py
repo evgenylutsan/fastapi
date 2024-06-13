@@ -7,7 +7,7 @@ from app.db import db_user
 
 
 router = APIRouter(
-    prefix='/user',
+    prefix='api/user',
     tags=['user']
 )
 

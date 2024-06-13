@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 
 router = APIRouter(
-    prefix='/calendar',
+    prefix='api/calendar',
     tags=['calendar']
 )
 
