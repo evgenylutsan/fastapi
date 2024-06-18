@@ -1,6 +1,7 @@
 from datetime import date, time
 from typing import List
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
+from sqlalchemy import Date, Time
 
 
 class UserBase(BaseModel):
@@ -103,3 +104,17 @@ class EventCalendar(BaseModel):
     event_type: str
     event_date: date
         
+class TicketCreate(BaseModel):
+    event_headline: str
+    ticket_type: str = Field(..., regex="^(Делегат|Партнер|Гость)$")
+
+class TicketResponse(BaseModel):
+    id: int
+    user_id: int
+    event_id: int
+    event_headline: str
+    event_place: str
+    event_date: Date
+    event_time: Time
+    ticket_type: str
+    ticket_number: int

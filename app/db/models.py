@@ -1,5 +1,5 @@
 from app.db.database import Base
-from sqlalchemy import Column, Integer, String, Date, VARCHAR, Time
+from sqlalchemy import Column, Integer, String, Date, VARCHAR, Time, PrimaryKeyConstraint
 from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -74,3 +74,20 @@ class DBCalendar(Base):
     event_image_preview = Column(VARCHAR)
     event_type = Column(VARCHAR)
     event_date = Column(Date)
+    
+class DBTicket(Base):
+    __tablename__ = 'tickets'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
+    event_id = Column(Integer, ForeignKey("event.id"), primary_key=True)
+    event_headline = Column(VARCHAR)
+    event_place = Column(VARCHAR)
+    event_date = Column(Date)
+    event_time = Column(Time)
+    ticket_type = Column(VARCHAR)
+    ticket_number = Column(Integer)
+    
+    event = relationship("DBEvent")
+    user = relationship("DbUser")
+
+    __table_args__ = (PrimaryKeyConstraint('user_id', 'event_id'),)

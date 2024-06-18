@@ -24,7 +24,7 @@ async def get_token(response: Response, request: UserAuth,db: Session = Depends(
     if not Hash.verify(user.password, request.password_login):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Неверно введен пароль")
     
-    access_token = oauth2.create_access_token(data={'sub': user.id})
+    access_token = oauth2.create_access_token(data={'sub': user.email})
     response.set_cookie('event_access_token', access_token, httponly=True)
     
     return {
