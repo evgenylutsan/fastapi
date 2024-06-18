@@ -38,7 +38,7 @@ class BasicAuthMiddleware(BaseHTTPMiddleware):
         self.password = password
 
     async def dispatch(self, request: Request, call_next):
-        if request.url.path in ["/docs", "/redoc", "/openapi.json"]:
+        if request.url.path in ["api/docs", "api/redoc", "api/openapi.json"]:
             auth = request.headers.get("Authorization")
             if auth is None:
                 return Response(
